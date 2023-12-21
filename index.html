@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket.io Exemplo</title>
+</head>
+<body>
+  <h1>Valores Individuais: <span id="valores"></span></h1>
+
+  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on('updateValoresIndividuais', (valores) => {
+      document.getElementById('valores').innerText = valores.join(', ');
+    });
+
+    window.addEventListener('beforeunload', () => {
+      socket.disconnect();
+    });
+  </script>
+</body>
+</html>
